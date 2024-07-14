@@ -18,3 +18,22 @@
 ### פתיחת סישן חדש ב kex
 * התחברות דרך הטרמינל `kex --win -s`
 * התחברות דרך שורת הפקודה במחשב Windows המארח `wsl -d kali-linux kex --win -s`
+## אוטומציה
+- לאחר הקמה והתחברות למכונה, פתח חלון טרמינל חדש
+- צור קובץ חדש בשם setup.sh בעורך הטקסט נאנו `nano setup.sh`
+- העתק את התוכן הבא
+```
+#!/bin/bash 
+
+# Update system and install kex
+DEBIAN_FRONTEND=noninteractive \
+apt update -y && \
+apt upgrade -y && \
+apt install -y kali-win-kex
+
+# Output result
+echo "It went good!"
+```
+- שמור את הקובץ `CTRL+X`
+- הוסף הרשאת הרצה לקובץ `chmod +x setup.sh`
+- הרץ את הסקריפט `sudo ./setup.sh`
