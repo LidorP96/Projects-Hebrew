@@ -23,16 +23,29 @@
 - צור קובץ חדש בשם setup.sh בעורך הטקסט נאנו `nano setup.sh`
 - העתק את התוכן הבא
 ```
-#!/bin/bash 
+#!/bin/bash
+
+# Exit if any command fails
+set -e
 
 # Update system and install kex
-DEBIAN_FRONTEND=noninteractive \
-apt update -y && \
-apt upgrade -y && \
+echo "Updating System..."
+sleep 3
+apt update -y
+clear
+
+echo -e "Done with updating!\nInstalling kex in 3 seconds..."
+sleep 3
 apt install -y kali-win-kex
 
-# Output result
-echo "It went good!"
+# If all good
+clear
+echo "Kex has been installed !"
+sleep 3
+clear
+echo "Now satrting kex..."
+sleep 3
+kex --win -s
 ```
 - שמור את הקובץ `CTRL+X`
 - הוסף הרשאת הרצה לקובץ `chmod +x setup.sh`
