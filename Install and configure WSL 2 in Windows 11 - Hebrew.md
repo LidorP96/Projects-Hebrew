@@ -6,26 +6,28 @@
 dism /online /get-features /format:table | findstr /I "sub virtual"
 ```
 * במידה והפיצ'רים לא רצים, פתח את שורת ה RUN והרץ ``optionalfeatures`` ולאחר מכן בחר בהם והפעל אותם
-* נפתח חלון PowerShell ונוודא שאנו מריצים את הגרסה העדכנית ביותר `wsl --update`
+* נפתח נוספת חלון CMD ונבצע עדכון ל WSK:
+```
+wsl --update
+```
 * לחלופין ניתן להוריד את עדכון הקרנל בצורה ידנית [מכאן](https://learn.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package)
-* מומלץ לבצע אתחול נוסף למחשב
-* נגדיר ש WSL ירוץ בגרסה העדכנית ביותר `wsl --set-default-version 2`
-* נתקין מכונת WSL מסוג Kali Linux בעזרת הפקודה הבאה:
+* נוודא שמכונות ירוצו בגרסא 2:
+```
+`wsl --set-default-version 2`
+```
+* נתקין מכונת WSL מסוג Kali Linux בעזרת הפקודה הבאה:  
+
 ```
 wsl --install -d kali-linux
 ```
 * לאחר מכן בחר את שם המשתמש והסיסמא
 ## שלב שני
 ### התקנה של Win-KeX (כלי המאפשר שימוש ב GUI על גבי WSL 2)
-* בתוך WSL הרץ בטרמינל `sudo apt install -y kali-win-kex`
-## שלב שלישי
-### פתיחת סישן חדש ב kex
-* התחברות דרך הטרמינל `kex --win -s`
-* התחברות דרך שורת הפקודה במחשב Windows המארח `wsl -d kali-linux kex --win -s`
-## אוטומציה
-- לאחר הקמה והתחברות למכונה, פתח חלון טרמינל חדש
-- צור קובץ חדש בשם setup.sh בעורך הטקסט נאנו `nano setup.sh`
-- העתק את התוכן הבא
+* בשביל להקל על תהליך ההתקנה, נבצעה התקנה בעזרת סקריפט. נפתח את עורך ה nano וניצור סקריט חדש בשם kex.sh:
+```
+nano script.sh
+```
+- העתק את התוכן הבא:
 ```
 #!/bin/bash
 
@@ -50,6 +52,12 @@ echo "You will be prompted to choose a password !"
 sleep 5
 sudo -u $SUDO_USER kex --win -s
 ```
-- שמור את הקובץ `CTRL+X`
-- הוסף הרשאת הרצה לקובץ `chmod +x setup.sh`
-- הרץ את הסקריפט `sudo ./setup.sh`
+- בצע שמירה של הסקריפט על ידי לחיצה על **CTRL+X**
+- הוסף הרשאת הרצה לקובץ:
+```
+chmod +x kex.sh
+```
+- הרץ את הסקריפט:
+```
+sudo ./kex.sh
+```
