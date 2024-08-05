@@ -28,25 +28,23 @@
 # Exit if any command fails
 set -e
 
-# Update system and install kex
+# Update system
 echo "Updating System..."
-sleep 5
-apt update -y
+apt update -y && apt upgrade -y
 clear
 
-echo -e "Syestem updated! Installing kex in 3 seconds.\nIt will take a while..."
-sleep 5
-clear
+# Installing kex
+echo -e "Installing kex...\nIt will take a while..."
+sleep 2
 apt install -y kali-win-kex
-
-# Message
 clear
-echo "Kex has been installed !"
+
+# Strting kex
+clear
+echo "Kex has been installed !\nNow starting kex..."
+echo "You will be prompted to choose a password !"
 sleep 5
-clear
-
-# Start kex
-echo -e "You can now start kex by typing: 'kex --win -s'\nThen you will be prompted to choose a password.\nGoodBye (:"
+sudo -u $SUDO_USER kex --win -s
 ```
 - שמור את הקובץ `CTRL+X`
 - הוסף הרשאת הרצה לקובץ `chmod +x setup.sh`
