@@ -6,7 +6,7 @@
 dism /online /get-features /format:table | findstr /I "sub virtual"
 ```
 * במידה והפיצ'רים לא רצים, פתח את שורת ה RUN והרץ ``optionalfeatures`` ולאחר מכן בחר בהם והפעל אותם
-* נפתח נוספת חלון CMD ונבצע עדכון ל WSK:
+* נפתח נוספת חלון CMD ונבצע עדכון ל WSL:
 ```
 wsl --update
 ```
